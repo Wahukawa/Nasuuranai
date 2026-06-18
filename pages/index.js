@@ -227,6 +227,10 @@ export default function Home() {
           padding: 32px 24px;
           position: relative;
           margin-bottom: 28px;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+          user-select: none;
+          -webkit-user-select: none;
           overflow: hidden;
           transition: box-shadow 0.4s;
         }
@@ -369,6 +373,10 @@ export default function Home() {
           position: relative;
           overflow: hidden;
           margin-bottom: 28px;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+          user-select: none;
+          -webkit-user-select: none;
         }
 
         .btn:not(:disabled):hover {
