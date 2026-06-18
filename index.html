@@ -411,13 +411,15 @@
           p.style.setProperty('--dx', Math.cos(angle) * speed + 'px');
           p.style.setProperty('--dy', Math.sin(angle) * speed + 'px');
           stage.appendChild(p);
-          setTimeout(() => p.remove(), 1400);
+          (function(particle){
+            setTimeout(function(){ particle.remove(); }, 1400);
+          })(p);
         }
       }
 
       if (!r.buy) {
         stage.classList.add('shake');
-        setTimeout(() => stage.classList.remove('shake'), 600);
+        setTimeout(function(){ stage.classList.remove('shake'); }, 600);
       }
 
       btnRetry.style.display = 'block';
@@ -425,10 +427,10 @@
     }
 
     function updateHistory(r) {
-      history = [r, ...history].slice(0, 5);
+      history = [r].concat(history).slice(0, 5);
       historySection.style.display = 'block';
       historyRow.innerHTML = '';
-      history.forEach(h => {
+      history.forEach(function(h) {
         const chip = document.createElement('div');
         chip.className = 'history-chip';
         chip.style.background = h.buy ? '#276749' : '#2d3748';
@@ -452,12 +454,18 @@
       spinningEl.style.display = 'flex';
       stage.className = 'stage';
 
-      setTimeout(function() {
-        const r = pick();
-        showResult(r);
-        spinning = false;
-        btnSpin.disabled = false;
-      }, 1000);
+      const start = Date.now();
+      function check() {
+        if (Date.now() - start >= 1000) {
+          const r = pick();
+          showResult(r);
+          spinning = false;
+          btnSpin.disabled = false;
+        } else {
+          requestAnimationFrame(check);
+        }
+      }
+      requestAnimationFrame(check);
     }
 
     function doReset() {
