@@ -46,7 +46,7 @@ const RESULTS = [
     buy: true,
     color: '#276749',
     glow: '#48bb78',
-    emoji: '🐄',
+    emoji: '◂Ⓘ▸',
     message: '買って。/カウシカ',
   },
   {
@@ -73,7 +73,7 @@ const RESULTS = [
     buy: true,
     color: '#553c9a',
     glow: '#d6bcfa',
-    emoji: '🧓',
+    emoji: '😇',
     message: 'なすですな',
   },
 ];
